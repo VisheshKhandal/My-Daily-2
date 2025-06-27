@@ -1,3 +1,6 @@
+// Set your API base URL for production or local
+const API_BASE_URL = 'https://my-daily-2.onrender.com/api';
+
 class DailyJournal {
     constructor() {
         this.entries = [];
@@ -439,7 +442,7 @@ class DailyJournal {
             return;
         }
         try {
-            const res = await fetch('http://localhost:5000/api/entries', {
+            const res = await fetch(`${API_BASE_URL}/entries`, {
                 headers: { 'Authorization': `Bearer ${this.auth.token}` }
             });
             if (!res.ok) throw new Error('Failed to fetch entries');
@@ -549,7 +552,7 @@ class DailyJournal {
         try {
             if (this.editingEntryId) {
                 // Update existing entry
-                const res = await fetch(`http://localhost:5000/api/entries/${this.editingEntryId}`, {
+                const res = await fetch(`${API_BASE_URL}/entries/${this.editingEntryId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -567,7 +570,7 @@ class DailyJournal {
                 }
             } else {
                 // Create new entry
-                const res = await fetch('http://localhost:5000/api/entries', {
+                const res = await fetch(`${API_BASE_URL}/entries`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -668,7 +671,7 @@ class DailyJournal {
         cancelBtn.onclick = null;
         confirmBtn.onclick = async () => {
             try {
-                const res = await fetch(`http://localhost:5000/api/entries/${id}`, {
+                const res = await fetch(`${API_BASE_URL}/entries/${id}`, {
                     method: 'DELETE',
                     headers: { 'Authorization': `Bearer ${this.auth.token}` }
                 });
@@ -1668,10 +1671,10 @@ class DailyJournal {
         this.accountModalError.style.display = 'none';
         let url = '', body = {};
         if (this.auth.mode === 'login') {
-            url = 'http://localhost:5000/api/auth/login';
+            url = `${API_BASE_URL}/auth/login`;
             body = { email, password };
         } else {
-            url = 'http://localhost:5000/api/auth/register';
+            url = `${API_BASE_URL}/auth/register`;
             body = { username, email, password };
         }
         if (this.accountSubmitBtnText && this.accountSubmitBtnSpinner) {
@@ -1749,7 +1752,7 @@ class DailyJournal {
             quoteAuthor: author
         };
         try {
-            const res = await fetch('http://localhost:5000/api/entries', {
+            const res = await fetch(`${API_BASE_URL}/entries`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
