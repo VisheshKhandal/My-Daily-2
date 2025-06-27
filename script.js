@@ -1,4 +1,4 @@
-// Set your API base URL for production or local
+// Set your API base URL for production or local bhaya
 const API_BASE_URL = 'https://my-daily-2.onrender.com/api';
 
 class DailyJournal {
