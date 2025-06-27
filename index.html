@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Daily Journal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <!-- Loader Overlay -->
+    <div id="loader-overlay">
+        <div class="loader-content">
+            <h1 class="loader-title">My Daily Journaling</h1>
+            <h2 class="loader-subtitle">An Initiative By Vishesh Khandal</h2>
+            <div class="loader-stickers">
+                <span class="loader-sticker sticker-1">📔</span>
+                <span class="loader-sticker sticker-2">🌟</span>
+                <span class="loader-sticker sticker-3">✨</span>
+                <span class="loader-sticker sticker-4">💡</span>
+                <span class="loader-sticker sticker-5">✍️</span>
+                <span class="loader-sticker sticker-6">📚</span>
+            </div>
+        </div>
+    </div>
+    <!-- End Loader Overlay -->
+    
+    <!-- Compact Elegant Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <div class="brand-icon">
+                    <span class="icon-animation">📔</span>
+                </div>
+                <div class="brand-text">
+                    <h1 class="navbar-title">
+                        <span class="title-main">My Daily</span>
+                        <span class="title-accent">Journal</span>
+                    </h1>
+                    <span class="navbar-subtitle">
+                        <span class="subtitle-by">by</span>
+                        <span class="subtitle-name">Vishesh Khandal</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Move navbar-nav here -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link active" data-section="home">
+                        <i class="bi bi-house-fill"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#quotes" class="nav-link" data-section="quotes">
+                        <i class="bi bi-chat-quote-fill"></i>
+                        <span>Quotes</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#write" class="nav-link" data-section="write">
+                        <i class="bi bi-pencil-square"></i>
+                        <span>Write</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#entries" class="nav-link" data-section="entries">
+                        <i class="bi bi-journal-bookmark"></i>
+                        <span>Entries</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#stats" class="nav-link" data-section="stats">
+                        <i class="bi bi-bar-chart-fill"></i>
+                        <span>Statistics</span>
+                    </a>
+                </li>
+                <!-- Account (mobile) -->
+                <li class="nav-item mobile-account-item">
+                    <a href="#" class="nav-link" id="mobileAccountBtn">
+                        <i class="bi bi-person-circle"></i>
+                        <span>Account</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="navbar-actions">
+                <div class="theme-switcher">
+                    <button class="theme-btn" data-theme="light" title="Light Mode">☀️</button>
+                    <button class="theme-btn" data-theme="dark" title="Dark Mode">🌙</button>
+                    <button class="theme-btn" data-theme="custom" title="Custom Mode">🎨</button>
+                </div>
+                <!-- Account Icon (desktop) -->
+                <div class="account-dropdown" id="accountDropdown">
+                    <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false">
+                        <i class="bi bi-person-circle"></i>
+                    </button>
+                    <div class="account-menu" id="accountMenu">
+                        <div class="account-menu-content" id="accountMenuContent">
+                            <!-- Populated by JS: Login/Register or Profile/Logout -->
+                        </div>
+                    </div>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navbarNav">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Welcome Hero Card -->
+        <section class="hero-welcome" id="home">
+            <div class="hero-content">
+                <div class="hero-stickers">
+                    <span class="sticker sticker-1">🌟</span>
+                    <span class="sticker sticker-2">✍️</span>
+                    <span class="sticker sticker-3">💭</span>
+                    <span class="sticker sticker-4">📚</span>
+                    <span class="sticker sticker-5">💡</span>
+                    <span class="sticker sticker-6">✨</span>
+                </div>
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span class="word">Welcome</span>
+                        <span class="word">to</span>
+                        <span class="word">Your</span>
+                        <span class="word">Journal</span>
+                    </h1>
+                    <p class="hero-subtitle">Start your daily reflection journey</p>
+                    <div class="hero-action">
+                        <button class="hero-btn" onclick="document.getElementById('write').scrollIntoView({behavior: 'smooth'})">
+                            <span>Start Writing</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote Section -->
+        <section class="quote-section section" id="quotes">
+            <div class="section-header">
+                <h2>💬 Daily Inspiration</h2>
+            </div>
+            <div class="quote-card loaded" id="quoteCard">
+                <p id="quoteText">"The journey of a thousand miles begins with one step."</p>
+                <span id="quoteAuthor">— Lao Tzu</span>
+                <div class="quote-actions">
+                    <button id="likeBtn" class="quote-like-btn" aria-label="Like"><i class="bi bi-heart"></i></button>
+                    <button id="commentBtn" class="quote-comment-btn" aria-label="Comment"><i class="bi bi-chat-dots"></i></button>
+                </div>
+                <button id="newQuoteBtn" class="quote-btn">New Quote</button>
+                <div class="quote-like-big" id="quoteLikeBig"><i class="bi bi-heart-fill"></i></div>
+                <div class="quote-comment-modal" id="quoteCommentModal" style="display:none;">
+                    <textarea id="quoteCommentInput" placeholder="Add your thoughts about this quote..."></textarea>
+                    <div class="quote-comment-actions">
+                        <button id="submitCommentBtn" class="btn btn-primary">Save Comment</button>
+                        <button id="cancelCommentBtn" class="btn btn-outline">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Entry Form -->
+        <section class="entry-section section" id="write">
+            <div class="input-container">
+                <div class="section-header">
+                    <h2>✍️ Write Your Thoughts</h2>
+                </div>
+                <form id="entryForm">
+                    <div class="form-group">
+                        <label for="entryTitle">Entry Title</label>
+                        <input type="text" id="entryTitle" placeholder="e.g., I am smart">
+                    </div>
+                    <div class="form-group">
+                        <label for="journalInput">Your Thoughts</label>
+                        <textarea id="journalInput" placeholder="What's on your mind today?"></textarea>
+                    </div>
+                    <div class="extra-inputs">
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select id="category">
+                                <option value="Work">Work</option>
+                                <option value="Personal">Personal</option>
+                                <option value="Ideas">Ideas</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tags">Tags (comma separated)</label>
+                            <input type="text" id="tags" placeholder="e.g., peace, morning">
+                        </div>
+                        <div class="form-group">
+                            <label for="mood">Mood</label>
+                            <select id="mood">
+                                <option value="Happy">Happy</option>
+                                <option value="Sad">Sad</option>
+                                <option value="Anxious">Anxious</option>
+                                <option value="Excited">Excited</option>
+                                <option value="Neutral">Neutral</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="imageUpload">Upload Image</label>
+                            <input type="file" id="imageUpload" accept="image/*">
+                        </div>
+                    </div>
+                    <div class="input-footer">
+                        <span id="charCount">0/1000 characters</span>
+                        <button type="submit" id="saveEntryBtn" class="btn btn-primary">Save Entry</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Journal Entries -->
+        <section class="entries-section section" id="entries">
+            <div class="entries-header">
+                <div class="section-header">
+                    <h2>📚 Your Journal Entries</h2>
+                </div>
+                <div class="entries-controls"></div>
+            </div>
+            <div class="entries-tabs" id="entriesTabs">
+                <button class="entries-tab active" id="tabThoughts">Your Thoughts</button>
+                <button class="entries-tab" id="tabQuotes">Commented Quotes</button>
+            </div>
+            <div class="entries-controls">
+                <input type="text" id="searchInput" placeholder="Search entries...">
+                <button id="exportBtn" class="btn btn-outline">Export</button>
+                <button id="clearAllBtn" class="btn btn-danger">Clear All</button>
+            </div>
+            <div class="filter-section">
+                <label for="filterCategory">Filter by Category:</label>
+                <select id="filterCategory">
+                    <option value="">All Categories</option>
+                    <option value="Work">Work</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Ideas">Ideas</option>
+                    <option value="Other">Other</option>
+                </select>
+                <label for="filterMood">Filter by Mood:</label>
+                <select id="filterMood">
+                    <option value="">All Moods</option>
+                    <option value="Happy">Happy</option>
+                    <option value="Sad">Sad</option>
+                    <option value="Anxious">Anxious</option>
+                    <option value="Excited">Excited</option>
+                    <option value="Neutral">Neutral</option>
+                </select>
+            </div>
+            <div id="entriesContainer" class="entries-container"></div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section class="stats-section section" id="stats">
+            <div class="section-header">
+                <h2>📊 Journal Statistics</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stats-summary">
+                    <p>Total Entries: <span id="totalEntries">0</span></p>
+                    <p>Quote Reflection Entries: <span id="quoteReflectionCount">0</span></p>
+                    <p>Total Words: <span id="totalWords">0</span></p>
+                    <p>Average Words: <span id="avgWords">0</span></p>
+                    <p>Oldest Entry: <span id="oldestEntry">N/A</span></p>
+                    <p>Newest Entry: <span id="newestEntry">N/A</span></p>
+                    <button id="quickStatsBtn" class="btn btn-outline">Quick Stats</button>
+                </div>
+                <div class="stats-charts">
+                    <div class="chart-item"><canvas id="entriesChart"></canvas></div>
+                    <div class="chart-item"><canvas id="categoriesChart"></canvas></div>
+                    <div class="chart-item"><canvas id="moodsChart"></canvas></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Stats Modal -->
+        <div id="quickStatsModal" class="modal-overlay">
+            <div class="modal-content">
+                <h3>Quick Stats</h3>
+                <p id="modalStats"></p>
+                <div class="modal-actions">
+                    <button id="closeModal" class="btn btn-primary">Close</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Account Modal (Login/Register) -->
+    <div class="modal-overlay" id="accountModal">
+        <div class="modal-content account-modal-card classic-auth-modal">
+            <div class="account-modal-header">
+                <button type="button" class="account-tab-btn" id="loginTabBtn">Login</button>
+                <button type="button" class="account-tab-btn" id="registerTabBtn">Register</button>
+            </div>
+            <form id="accountForm" class="account-form">
+                <div class="form-group account-form-group floating-label-group" id="usernameGroup">
+                    <span class="input-icon"><i class="bi bi-person"></i></span>
+                    <input type="text" id="accountUsername" name="username" required autocomplete="username" placeholder=" ">
+                    <label for="accountUsername">Username</label>
+                </div>
+                <div class="form-group account-form-group floating-label-group">
+                    <span class="input-icon"><i class="bi bi-envelope"></i></span>
+                    <input type="email" id="accountEmail" name="email" required autocomplete="email" placeholder=" ">
+                    <label for="accountEmail">Email</label>
+                </div>
+                <div class="form-group account-form-group floating-label-group password-group">
+                    <span class="input-icon"><i class="bi bi-lock"></i></span>
+                    <input type="password" id="accountPassword" name="password" required autocomplete="current-password" placeholder=" ">
+                    <label for="accountPassword">Password</label>
+                </div>
+                 
+                <div class="modal-actions account-modal-actions">
+                    <button type="submit" class="btn btn-primary account-submit-btn" id="accountSubmitBtn">
+                        <span class="btn-text">Login</span>
+                        <span class="btn-spinner" style="display:none;"><span class="loading-spinner"></span></span>
+                    </button>
+                    <button type="button" class="btn btn-outline account-cancel-btn" id="accountModalClose">Cancel</button>
+                </div>
+            </form>
+            <div id="accountModalError" class="account-modal-error" style="display:none;"></div>
+        </div>
+    </div>
+
+    <!-- Custom Delete Confirmation Modal -->
+    <div id="deleteConfirmModal" class="modal-overlay" style="display:none;">
+        <div class="modal-content delete-modal-card">
+            <h3 class="delete-modal-title">Delete Entry?</h3>
+            <p class="delete-modal-message">Are you sure you want to delete this entry? This action cannot be undone.</p>
+            <div class="modal-actions delete-modal-actions">
+                <button id="confirmDeleteBtn" class="btn btn-danger">Delete</button>
+                <button id="cancelDeleteBtn" class="btn btn-outline">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
